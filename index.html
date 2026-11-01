@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Joyeux anniversaire Blondie</title>
+<meta name="theme-color" content="#c42b2b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#c42b2b;--bg2:#31e65e;--ink:#fff3ee;--soft:#ffffffee;--gold:#e5ff00;--gold-rgb:229,255,0;--rose:#ff7a8a;--card:rgba(0,0,0,.30);--shadow:0 2px 10px rgba(0,0,0,.45)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+body{margin:0;min-height:100vh;min-height:100dvh;color:var(--ink);font-family:Poppins,system-ui,sans-serif;font-weight:300;
+background:radial-gradient(circle at 20% 10%,var(--bg2),var(--bg1) 70%) fixed;background-color:var(--bg1);overflow-x:hidden}
+canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.heart,.bf{position:fixed;pointer-events:none;z-index:0}
+.heart{bottom:-30px;opacity:.5;animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+.bf{animation:fly linear forwards;opacity:.9}
+@keyframes fly{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(30px,-25px) rotate(10deg)}50%{transform:translate(65px,15px) rotate(-10deg)}75%{transform:translate(95px,-20px) rotate(15deg)}100%{transform:translate(130px,0) rotate(0);opacity:0}}
+.step{display:none;min-height:100vh;min-height:100dvh;padding:calc(32px + env(safe-area-inset-top,0px)) 22px calc(70px + env(safe-area-inset-bottom,0px));flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;z-index:1}
+.step.on{display:flex;animation:in .9s ease both}
+@keyframes in{from{opacity:0;transform:translateY(18px)}}
+h1,h2{font-family:'Playfair Display',Georgia,serif;font-weight:600;margin:.2em 0;line-height:1.2;text-shadow:var(--shadow)}
+h1{font-size:clamp(2.1rem,9vw,3.4rem)}
+h1.mid{font-size:clamp(1.7rem,7.5vw,2.2rem)}
+h2{font-size:clamp(1.5rem,6vw,2.1rem);color:var(--gold)}
+h2.sub{font-size:clamp(1.3rem,5.5vw,1.6rem)}
+.name{font-style:italic;color:var(--gold)}
+p{max-width:34ch;line-height:1.8;color:var(--soft);font-size:1.02rem;text-shadow:var(--shadow)}
+.card{background:var(--card);border:1px solid rgba(255,255,255,.22);border-radius:22px;padding:24px 22px;max-width:440px;width:100%;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);margin:14px 0;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.card p{max-width:none;margin:.7em 0;min-height:1.8em;text-shadow:none}
+.card h2{text-shadow:none}
+.tw .r{visibility:hidden}
+.tw.on .t::after{content:'▍';color:var(--gold);animation:bl .7s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+button{font:500 1rem Poppins,sans-serif;color:#3a0c16;background:linear-gradient(135deg,var(--gold),#fbffb0);border:0;border-radius:40px;padding:14px 30px;margin-top:18px;cursor:pointer;box-shadow:0 8px 24px rgba(var(--gold-rgb),.35);transition:transform .2s}
+button:active{transform:scale(.96)}
+button:focus-visible,input:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.photo{display:block;width:min(78vw,300px);border-radius:22px;border:2px solid rgba(var(--gold-rgb),.7);box-shadow:0 14px 40px rgba(0,0,0,.5),0 0 30px rgba(var(--gold-rgb),.25);margin:12px 0}
+.avatar{width:min(46vw,190px);height:min(46vw,190px);border-radius:50%;object-fit:cover;object-position:50% 14%;border:3px solid var(--gold);box-shadow:0 12px 36px rgba(0,0,0,.5),0 0 34px rgba(var(--gold-rgb),.3);margin-bottom:6px}
+.photo.s{width:min(66vw,250px)}
+.cover{height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;transition:opacity .5s}
+#gal{display:flex;justify-content:center}
+.bar{width:min(78vw,300px);height:4px;border-radius:4px;background:rgba(255,255,255,.25);overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;width:0;background:var(--gold)}
+.hint{font-size:.85rem;margin:.6em 0 0}
+.lock{font-size:3rem;line-height:1}
+input{font:400 1.6rem Poppins,sans-serif;width:120px;text-align:center;padding:12px;border-radius:16px;border:1px solid var(--gold);background:rgba(0,0,0,.25);color:var(--ink);outline:0;margin-top:14px}
+input::placeholder{color:rgba(255,255,255,.55)}
+.err{min-height:1.6em;color:#fff;font-size:.95rem;margin-top:12px;text-shadow:var(--shadow)}
+.shake{animation:sh .4s}
+@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.signature{color:var(--gold);font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;text-shadow:none}
+#part2{display:flex;flex-direction:column;align-items:center;width:100%}
+.dots{position:fixed;bottom:calc(14px + env(safe-area-inset-bottom,0px));left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:2;pointer-events:none}
+.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4);transition:all .3s}
+.dots i.on{background:var(--gold);width:20px;border-radius:6px}
+#mus{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:14px;z-index:6;margin:0;padding:8px 13px;font-size:1.1rem;display:none}
+@media (prefers-reduced-motion:reduce){.heart,.bf{display:none}.step.on{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<button id="mus" onclick="toggle()" aria-label="Musique">🎵</button>
+
+<section class="step on" id="s0">
+  <img class="avatar" src="photos/blondie1.webp" alt="Portrait de Blondie">
+  <h1>Bienvenue,<br><span class="name">Blondie</span></h1>
+  <p>Cette page a été faite rien que pour toi, pour une journée qui est la tienne.</p>
+  <p class="hint">Prête ? On commence.</p>
+  <button onclick="go(1)">Entrer ✨</button>
+</section>
+
+<section class="step" id="s1">
+  <h2>Joyeux anniversaire ❤️</h2>
+  <img class="photo" src="assets/gateau.jpg" alt="Gâteau d'anniversaire" decoding="async">
+  <div class="bar"><i id="pg"></i></div>
+  <p class="hint" id="wait">Laisse la musique se terminer, la surprise arrive juste après 🎉</p>
+  <button id="next1" hidden onclick="go(2)">❤️ La suite de la surprise ❤️</button>
+</section>
+
+<section class="step" id="s2">
+  <div class="lock">🔐</div>
+  <h2>Un petit cadenas</h2>
+  <p>Pour découvrir la vraie surprise, entre d'abord ton âge actuel 🌹</p>
+  <input id="age" type="tel" inputmode="numeric" maxlength="3" placeholder="00" autocomplete="off" aria-label="Ton âge">
+  <div class="err" id="err"></div>
+  <button onclick="check()">Ouvrir</button>
+</section>
+
+<section class="step" id="s3">
+  <h1 class="mid">🥳 Joyeux anniversaire 🥳</h1>
+  <h2 class="name sub">🌸 Fantasia Blondie 🌸</h2>
+  <div class="card"><p class="tw" id="a1"></p><p class="tw" id="a2"></p></div>
+  <button id="b3a" hidden onclick="part2()">La suite</button>
+  <div id="part2" hidden>
+    <img class="photo s" src="assets/gateau_3.jpg" alt="Gâteau Happy Birthday">
+    <div class="card"><p class="tw" id="b1"></p><p class="tw" id="b2"></p></div>
+  </div>
+  <button id="b3b" hidden onclick="go(4)">Une p'tite dernière chose 💌</button>
+</section>
+
+<section class="step" id="s4">
+  <div id="gal" hidden><img class="photo cover" id="slide" alt="Photo souvenir"></div>
+  <div class="card">
+    <h2>Chère amie ❤️</h2>
+    <p>Certaines histoires ne suivent pas le chemin qu'on avait imaginé. Les circonstances ont décidé autrement, et pourtant, cela n'enlève rien à la valeur de ce que nous avons partagé.</p>
+    <p>Tu comptes pour moi, hier comme aujourd'hui, et je voulais que tu le saches en ce jour spécial.</p>
+    <p>Prends soin de toi, et vis cette journée comme aucune autre et pour que ce jour compte.</p>
+    <p>Prends soin de toi pour moi, pour toi, pour Ange, pour Maeva, pour Miraline et surtout pour ta famille.</p>
+    <p>Rappelle-toi tous les bons moments passés avec nous et tu te rendras compte que tu n'es pas seule.</p>
+    <p>Et n'oublie pas qu'une personne qui a des gens à ses côtés a beaucoup.</p>
+    <p class="signature">Joyeux anniversaire ❤️</p>
+  </div>
+  <button onclick="confetti()">Encore des étoiles 🎉</button>
+</section>
+
+<div class="dots" id="dots"></div>
+
+<script>
+/* ==========================================================
+   MOT DE PASSE DU CADENAS = L'ÂGE DE BLONDIE 
+   ========================================================== */
+var AGE="22";
+var PHOTOS=["photos/blondie.jpg","photos/blondie0.webp","photos/blondie2.webp","photos/blondie3.webp"];     // photos de fanta (diaporama)
+var TXT={
+ a1:"Fanta ❤️ Aujourd'hui, c'est ton jour. Je tiens à te souhaiter un très joyeux anniversaire ! Tu es une personne mise à part identifiée par tout ce que tu peux être, et je suis vraiment content de t'avoir connue.",
+ a2:"Que cette nouvelle année t'apporte bonheur, succès, santé et surtout tout ce que ton coeur désire. Que tes rêves deviennent réalité et que jamais ton sourire ne s'éteigne ✨",
+ b1:"Je te souhaite de passer de bons moments inoubliables. Je te souhaite tout le meilleur pour cette nouvelle année qui commence pour toi. Profite de chaque instant, et sache que tu es aimée bien plus que tu ne peux l'imaginer ! 🎉🎂. Je te souhaite tout le bonheur et la joie possible pour cette journée spéciale, pour l'année qui vient ainsi que pour les années à venir",
+ b2:"Je t'envoie tous mes câlins possibles. Que Dieu te bénisse abondamment aujourd'hui et toujours, en t'ouvrant toutes les portes 🙏"
+};
+var $=function(i){return document.getElementById(i)};
+function type(id,done){
+  var el=$(id),ch=Array.from(TXT[id]),k=0;
+  el.innerHTML='<span class="t"></span><span class="r"></span>';
+  var t=el.firstChild,r=el.lastChild;r.textContent=ch.join('');el.classList.add('on');
+  (function step(){
+    if(k<ch.length){k++;t.textContent=ch.slice(0,k).join('');r.textContent=ch.slice(k).join('');setTimeout(step,32)}
+    else{el.classList.remove('on');el.textContent=ch.join('');if(done)done()}
+  })();
+}
+function reveal(id){$(id).hidden=false;$(id).scrollIntoView({behavior:'smooth',block:'center'})}
+function part3(){type('a1',function(){type('a2',function(){reveal('b3a')})})}
+function part2(){
+  $('b3a').hidden=true;$('part2').hidden=false;confetti();
+  $('part2').scrollIntoView({behavior:'smooth',block:'start'});
+  type('b1',function(){type('b2',function(){reveal('b3b')})});
+}
+var N=5,dots=$('dots');
+for(var i=0;i<N;i++)dots.appendChild(document.createElement('i'));
+var T=['assets/s1.mp3','assets/s2.mp3','assets/s3.mp3'].map(function(s,i){var a=new Audio();a.preload=i?'none':'auto';a.src=s;return a}),cur=-1;
+T[2].loop=true;
+function play(i){
+  T.forEach(function(a,k){if(k!==i)a.pause()});
+  cur=i;var p=T[i].play();if(p&&p.catch)p.catch(function(){});
+  $('mus').style.display='block';$('mus').textContent='🎵';
+}
+function toggle(){
+  var a=T[cur];if(!a)return;
+  if(a.paused){a.play();$('mus').textContent='🎵'}else{a.pause();$('mus').textContent='🔇'}
+}
+T[0].addEventListener('timeupdate',function(){if(T[0].duration)$('pg').style.width=(T[0].currentTime/T[0].duration*100)+'%'});
+function show1(){$('next1').hidden=false;$('wait').hidden=true}
+var t1=null;
+T[0].addEventListener('loadedmetadata',function(){clearTimeout(t1);t1=setTimeout(show1,(T[0].duration+3)*1000)});
+T[0].addEventListener('error',function(){setTimeout(show1,4000)});
+T[0].addEventListener('ended',function(){show1();confetti()});
+var slideI=0,slideT=null;
+function startSlides(){
+  if(!PHOTOS.length||slideT)return;
+  PHOTOS.forEach(function(u){var i=new Image();i.src=u});
+  $('gal').hidden=false;$('slide').src=PHOTOS[0];
+  if(PHOTOS.length>1)slideT=setInterval(function(){
+    slideI=(slideI+1)%PHOTOS.length;$('slide').style.opacity=0;
+    setTimeout(function(){$('slide').src=PHOTOS[slideI];$('slide').style.opacity=1},500)},3500);
+}
+var started3=false;
+function go(n){
+  document.querySelectorAll('.step').forEach(function(s,i){s.classList.toggle('on',i===n)});
+  [].forEach.call(dots.children,function(d,i){d.classList.toggle('on',i===n)});
+  window.scrollTo(0,0);
+  if(n===1){play(0);t1=setTimeout(show1,60000)}
+  if(n===3&&!started3){started3=true;part3()}
+  if(n===4){play(2);startSlides()}
+  if(n===2)setTimeout(function(){try{$('age').focus({preventScroll:true})}catch(e){}},600);
+  if(n===3||n===4)confetti();
+}
+go(0);
+for(var h=0;h<14;h++){var e=document.createElement('div');e.className='heart';e.textContent=['❤️','🌹','✨'][h%3];
+e.style.left=(Math.random()*95)+'vw';e.style.fontSize=(14+Math.random()*18)+'px';
+e.style.animationDuration=(9+Math.random()*10)+'s';e.style.animationDelay=(-Math.random()*15)+'s';document.body.appendChild(e)}
+setInterval(function(){
+  var b=document.createElement('div'),d=6+Math.random()*5;b.className='bf';b.textContent='🦋';
+  b.style.left=Math.random()*85+'vw';b.style.top=Math.random()*90+'vh';b.style.fontSize=(20+Math.random()*24)+'px';
+  b.style.animationDuration=d+'s';document.body.appendChild(b);setTimeout(function(){b.remove()},d*1000)},1000);
+function check(){
+  var v=$('age').value.replace(/\D/g,''),err=$('err'),inp=$('age');
+  if(v===AGE){err.textContent='';play(1);go(3)}
+  else{err.textContent="Hmm… ce n'est pas ça 😉 Réessaie !";inp.classList.remove('shake');void inp.offsetWidth;inp.classList.add('shake')}
+}
+$('age').addEventListener('keydown',function(e){if(e.key==='Enter')check()});
+var cv=$('c'),cx=cv.getContext('2d'),P=[],run=false;
+var dpr=Math.min(window.devicePixelRatio||1,2);
+function fit(){cv.width=innerWidth*dpr;cv.height=innerHeight*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}fit();addEventListener('resize',fit);
+function confetti(){
+  var col=['#e5ff00','#ff7a8a','#ffffff','#31e65e','#c42b2b'];
+  for(var i=0;i<130;i++)P.push({x:innerWidth/2,y:innerHeight*.45,vx:(Math.random()-.5)*14,vy:-Math.random()*13-3,s:4+Math.random()*6,c:col[i%5],r:Math.random()*6,l:160});
+  if(!run){run=true;loop()}
+}
+function loop(){
+  cx.clearRect(0,0,innerWidth,innerHeight);
+  P=P.filter(function(p){return p.l>0});
+  P.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=.28;p.vx*=.99;p.r+=.2;p.l--;
+    cx.save();cx.globalAlpha=Math.min(1,p.l/40);cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);cx.restore()});
+  if(P.length)requestAnimationFrame(loop);else{run=false;cx.clearRect(0,0,innerWidth,innerHeight)}
+}
+</script>
+</body>
+</html>
